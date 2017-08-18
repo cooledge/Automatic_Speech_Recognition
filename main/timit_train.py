@@ -22,7 +22,7 @@ from functools import wraps
 import numpy as np
 import tensorflow as tf
 from tensorflow.python.ops import ctc_ops as ctc
-from tensorflow.contrib.rnn.python.ops.core_rnn import static_bidirectional_rnn
+from tensorflow.contrib.rnn import static_bidirectional_rnn
 
 from utils.utils import load_batched_data
 from utils.utils import describe
