@@ -25,6 +25,7 @@ import cPickle
 import glob
 import sklearn
 import argparse
+import pdb
 from sklearn import preprocessing
 from subprocess import check_call, CalledProcessError
 
@@ -67,6 +68,7 @@ def preprocess(root_directory):
 
 
 def wav2feature(root_directory, save_directory, name, win_len, win_step, mode, feature_len, seq2seq, save):
+    pdb.set_trace()
     count = 0
     dirid = 0
     level = 'cha' if seq2seq is False else 'seq2seq'
@@ -134,8 +136,9 @@ if __name__ == "__main__":
                         type=str)
     parser.add_argument("-n", "--name", help="Name of the dataset",
                         choices=['dev-clean', 'dev-other', 'test-clean',
-                                 'test-other', 'train-clean-100', 'train-clean-360',
-                                 'train-other-500'], type=str, default='dev-clean')
+                                 'test-other', 'dev-other', 'train-clean-360',
+                                 #'test-other', 'train-clean-100', 'train-clean-360',
+                                 'train-other-500'], type=str, default='train-clean-100')
 
     parser.add_argument("-m", "--mode", help="Mode",
                         choices=['mfcc', 'fbank'],

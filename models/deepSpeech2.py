@@ -16,6 +16,7 @@ import datetime
 import os
 from six.moves import cPickle
 from functools import wraps
+import pdb
 
 import numpy as np
 import tensorflow as tf
@@ -121,10 +122,13 @@ class DeepSpeech2(object):
 
     @describe
     def build_graph(self, args, maxTimeSteps):
+        print("Greg in build_graph")
+        pdb.set_trace()
         self.graph = tf.Graph()
         with self.graph.as_default():
             # according to DeepSpeech2 paper, input is the spectrogram power of audio, but if you like,
             # you can also use mfcc feature as the input.
+            pdb.set_trace()
             self.inputX = tf.placeholder(tf.float32,
                                          shape=(maxTimeSteps, args.batch_size, args.num_feature))  
             inputXrs = tf.reshape(self.inputX, [args.batch_size, args.num_feature, maxTimeSteps, 1])

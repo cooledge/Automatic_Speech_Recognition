@@ -21,6 +21,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import pdb
 import argparse
 import time
 import datetime
@@ -115,6 +116,7 @@ class DBiRNN(object):
     def build_graph(self, args, maxTimeSteps):
         self.graph = tf.Graph()
         with self.graph.as_default():
+            #pdb.set_trace()
             self.inputX = tf.placeholder(tf.float32,
                                          shape=(maxTimeSteps, args.batch_size, args.num_feature))  # [maxL,32,39]
             inputXrs = tf.reshape(self.inputX, [-1, args.num_feature])
