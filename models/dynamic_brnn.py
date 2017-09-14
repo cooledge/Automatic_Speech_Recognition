@@ -137,7 +137,7 @@ class DBiRNN(object):
                            'learning rate': args.learning_rate,
                            'keep prob': args.keep_prob,
                            'batch size': args.batch_size}
-
+            pdb.set_trace()
             fbHrs = build_multi_dynamic_brnn(self.args, maxTimeSteps, self.inputX, self.cell_fn, self.seqLengths)
             with tf.name_scope('fc-layer'):
                 with tf.variable_scope('fc'):
@@ -145,11 +145,14 @@ class DBiRNN(object):
                         tf.truncated_normal([args.num_hidden, args.num_class], name='weightsClasses'))
                     biasesClasses = tf.Variable(tf.zeros([args.num_class]), name='biasesClasses')
                     logits = [tf.matmul(t, weightsClasses) + biasesClasses for t in fbHrs]
+            pdb.set_trace()
+          
+            # len(logits)=3264 of (64,29) => <number of timesteps> of (batch_size, number_of_classes)
             logits3d = tf.stack(logits)
+            # logits3d (3264, 64, 29) 
             self.loss = tf.reduce_mean(tf.nn.ctc_loss(self.targetY, logits3d, self.seqLengths))
             self.var_op = tf.global_variables()
             self.var_trainable_op = tf.trainable_variables()
-
             if args.grad_clip == -1:
                 # not apply gradient clipping
                 self.optimizer = tf.train.AdamOptimizer(args.learning_rate).minimize(self.loss)

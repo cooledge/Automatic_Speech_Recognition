@@ -243,6 +243,7 @@ def get_edit_distance(hyp_arr, truth_arr, normalize, level):
 def data_lists_to_batches(inputList, targetList, batchSize, level):
     ''' padding the input list to a same dimension, integrate all data into batchInputs
     '''
+    pdb.set_trace()
     assert len(inputList) == len(targetList)
     # dimensions of inputList:batch*39*time_length
 

@@ -68,7 +68,6 @@ def preprocess(root_directory):
 
 
 def wav2feature(root_directory, save_directory, name, win_len, win_step, mode, feature_len, seq2seq, save):
-    pdb.set_trace()
     count = 0
     dirid = 0
     level = 'cha' if seq2seq is False else 'seq2seq'
@@ -89,6 +88,7 @@ def wav2feature(root_directory, save_directory, name, win_len, win_step, mode, f
                     nframes = sf.nframes
                     sig = sf.read_frames(nframes)
                     rate = sf.samplerate
+                # (261, 39) 39 = 13*3
                 feat = calcfeat_delta_delta(sig,rate,win_length=win_len,win_step=win_step,mode=mode,feature_len=feature_len)
                 feat = preprocessing.scale(feat)
                 feat = np.transpose(feat)
@@ -138,7 +138,7 @@ if __name__ == "__main__":
                         choices=['dev-clean', 'dev-other', 'test-clean',
                                  'test-other', 'dev-other', 'train-clean-360',
                                  #'test-other', 'train-clean-100', 'train-clean-360',
-                                 'train-other-500'], type=str, default='train-clean-100')
+                                 'train-other-500'], type=str, default='dev-clean')
 
     parser.add_argument("-m", "--mode", help="Mode",
                         choices=['mfcc', 'fbank'],

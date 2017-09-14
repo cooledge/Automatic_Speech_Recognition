@@ -45,7 +45,7 @@ from tensorflow.python.platform import flags
 from tensorflow.python.platform import app
     
 flags.DEFINE_string('task', 'libri', 'set task name of this program')
-flags.DEFINE_string('train_dataset', 'small', 'set the training dataset')
+flags.DEFINE_string('train_dataset', 'dev-clean', 'set the training dataset')
 #flags.DEFINE_string('train_dataset', 'train-clean-100', 'set the training dataset')
 flags.DEFINE_string('dev_dataset', 'dev-clean', 'set the development dataset')
 flags.DEFINE_string('test_dataset', 'test-clean', 'set the test dataset')
@@ -69,7 +69,7 @@ flags.DEFINE_integer('num_epochs', 50, 'set the number of epochs')
 flags.DEFINE_float('lr', 0.0001, 'set the learning rate')
 flags.DEFINE_float('dropout_prob', 0.1, 'set probability of dropout')
 flags.DEFINE_float('grad_clip', 1, 'set the threshold of gradient clipping, -1 denotes no clipping')
-flags.DEFINE_string('datadir', '/home/dev/temp/save', 'set the data root directory')
+flags.DEFINE_string('datadir', '/home/dev/Downloads/saves', 'set the data root directory')
 flags.DEFINE_string('logdir', '/home/dev/temp/github/log/libri', 'set the log directory')
 
 
@@ -160,6 +160,7 @@ class Runner(object):
 
     @describe
     def load_data(self, feature_dir, label_dir, mode, level):
+        pdb.set_trace()
         return load_batched_data(feature_dir, label_dir, batch_size, mode, level)
 
 
